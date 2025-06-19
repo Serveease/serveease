@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Payment History{% endblock %}
+{% block content %}
+<div class="form-container">
+    <h2>Your Payments</h2>
+    {% if payments %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Purpose</th>
+                    <th>Amount</th>
+                    <th>Transaction ID</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pay in payments %}
+                <tr>
+                    <td>{{ pay.purpose }}</td>
+                    <td>{{ pay.amount }}</td>
+                    <td>{{ pay.transaction_id }}</td>
+                    <td>{{ pay.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No payments made yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

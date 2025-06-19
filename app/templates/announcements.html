@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Community Announcements{% endblock %}
+{% block content %}
+<div class="form-container">
+    <h2>Community Announcements</h2>
+    {% if announcements %}
+        <ul>
+        {% for a in announcements %}
+            <li><strong>{{ a.title }}</strong><br>{{ a.content }}<br><small>{{ a.date_posted.strftime('%Y-%m-%d %H:%M') }}</small></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No announcements available.</p>
+    {% endif %}
+</div>
+{% endblock %}

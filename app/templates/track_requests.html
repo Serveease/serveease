@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Track Requests{% endblock %}
+{% block content %}
+<div class="form-container">
+    <h2>Your Document Requests</h2>
+    {% if requests %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Document Type</th>
+                    <th>Purpose</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in requests %}
+                <tr>
+                    <td>{{ r.document_type }}</td>
+                    <td>{{ r.purpose }}</td>
+                    <td>{{ r.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You have not submitted any document requests yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Your Appointments{% endblock %}
+{% block content %}
+<div class="form-container">
+    <h2>Your Appointments</h2>
+    {% if appointments %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Purpose</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appt in appointments %}
+                <tr>
+                    <td>{{ appt.purpose }}</td>
+                    <td>{{ appt.schedule_date }}</td>
+                    <td>{{ appt.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No appointments booked yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

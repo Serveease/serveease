@@ -1,0 +1,142 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f6f9;
+    color: #333;
+}
+
+.navbar {
+    background: #ffffff;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.navbar .logo {
+    font-weight: bold;
+    color: #003366;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    float: right;
+}
+
+.nav-links a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: #0077cc;
+}
+
+.content {
+    padding: 2rem;
+}
+
+.form-container {
+    max-width: 400px;
+    margin: auto;
+    background: white;
+    padding: 2rem;
+    box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    border-radius: 10px;
+}
+
+.form-container h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    background-color: #003366;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #005599;
+}
+
+.hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.hero .btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 2rem;
+    background-color: #003366;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.hero .btn:hover {
+    background-color: #005599;
+}
+
+.dashboard ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dashboard ul li {
+    margin: 0.5rem 0;
+}
+
+.dashboard ul li a {
+    text-decoration: none;
+    color: #003366;
+}
+
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
