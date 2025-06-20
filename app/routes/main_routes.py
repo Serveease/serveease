@@ -10,4 +10,7 @@ def index():
 @main.route('/dashboard')
 @login_required
 def dashboard():
+    if current_user.role == 'admin':
+        return render_template('admin_as_user_dashboard.html', user=current_user)
     return render_template('dashboard.html', user=current_user)
+

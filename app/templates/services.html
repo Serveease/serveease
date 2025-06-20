@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Service Directory{% endblock %}
+{% block content %}
+<div class="content">
+  <h2>All Services</h2>
+
+  <form method="get">
+    <label for="department">Filter by Department:</label>
+    <select name="department" onchange="this.form.submit()">
+      <option value="">All</option>
+      {% for dept in departments %}
+        <option value="{{ dept[0] }}">{{ dept[0] }}</option>
+      {% endfor %}
+    </select>
+  </form>
+
+  <ul>
+    {% for s in services %}
+      <li><a href="{{ url_for('service.service_detail', service_id=s.id) }}">{{ s.title }}</a> - {{ s.department }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

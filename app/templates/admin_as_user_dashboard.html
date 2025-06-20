@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Admin View - User Dashboard{% endblock %}
+
+{% block content %}
+<div class="content">
+  <h2>Welcome, {{ user.name }} <span style="font-size: 0.8rem; color: #555;">(Admin View)</span></h2>
+  <p>This is what a citizen sees. You’re viewing the platform from their perspective.</p>
+
+  <div class="card">
+    <p><strong>Quick Access:</strong></p>
+    <ul>
+      <li><a href="{{ url_for('main.dashboard') }}">User Dashboard</a></li>
+      <li><a href="{{ url_for('admin.admin_dashboard') }}">Admin Dashboard</a></li>
+    </ul>
+  </div>
+
+  <div class="alert alert-info" style="margin-top: 2rem;">
+    You can use this view to test or troubleshoot user-side features without logging out.
+  </div>
+</div>
+{% endblock %}

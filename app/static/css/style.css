@@ -140,3 +140,11 @@ body {
     background-color: #d1ecf1;
     color: #0c5460;
 }
+
+.card {
+    background: #fff;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 1rem;
+}

@@ -12,12 +12,18 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
         user = User.query.filter_by(email=email).first()
+
         if user and check_password_hash(user.password, password):
             login_user(user)
             flash('Logged in successfully!', category='success')
-            return redirect(url_for('main.dashboard'))
+
+            if user.role == 'admin':
+                return redirect(url_for('admin.admin_dashboard'))
+            else:
+                return redirect(url_for('main.dashboard'))
         else:
             flash('Invalid credentials', category='danger')
+
     return render_template('login.html')
 
 @auth.route('/register', methods=['GET', 'POST'])

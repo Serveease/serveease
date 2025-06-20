@@ -40,4 +40,11 @@
         <p>No requests found.</p>
     {% endif %}
 </div>
+
+<div class="form-container" style="margin-top: 2rem;">
+    <h2>Manage Service Directory</h2>
+    <p>Use the links below to add new services or view the full directory:</p>
+    <a class="btn" href="{{ url_for('service.add_service') }}">➕ Add New Service</a>
+    <a class="btn" href="{{ url_for('service.service_directory') }}">📋 View All Services</a>
+</div>
 {% endblock %}

@@ -1,9 +1,11 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_migrate import Migrate
 
 db = SQLAlchemy()
 login_manager = LoginManager()
+migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
@@ -11,6 +13,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///serveease.db'
 
     db.init_app(app)
+    migrate.init_app(app, db)
     login_manager.init_app(app)
     login_manager.login_view = 'auth.login'
 
@@ -20,7 +23,6 @@ def create_app():
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    # Register Blueprints
     from .routes.auth_routes import auth
     from .routes.main_routes import main
     from .routes.request_routes import request_bp
@@ -29,6 +31,8 @@ def create_app():
     from .routes.feedback_routes import feedback
     from .routes.file_routes import file_routes
     from .routes.announcement_routes import announcement
+    from .routes.admin_routes import admin
+    from .routes.service_routes import service_bp
 
     app.register_blueprint(auth)
     app.register_blueprint(main)
@@ -38,5 +42,7 @@ def create_app():
     app.register_blueprint(feedback)
     app.register_blueprint(file_routes)
     app.register_blueprint(announcement)
+    app.register_blueprint(admin)
+    app.register_blueprint(service_bp)
 
     return app
