@@ -4,3 +4,10 @@ services:
     runtime: python
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn "app:create_app()"
+    autoDeploy: true
+    buildFilter:
+      paths:
+        - ./*
+    plan: free
+    postDeploy:
+      - flask db upgrade
