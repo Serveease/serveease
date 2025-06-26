@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="admin-wrapper">
+  <div class="admin-header">
+    <h2>Admin Panel:  Manage Document Requests</h2>
+  </div>
+  <div class="admin-content"> 
+    <form method="GET" action="{{ url_for('admin.admin_document_requests') }}">
+        <input type="text" name="tracking" placeholder="Search Tracking Number">
+        <select name="status">
+            <option value="">All</option>
+            <option value="Pending">Pending</option>
+            <option value="Processing">Processing</option>
+        </select>
+        <input type="date" name="from_date">
+        <input type="date" name="to_date">
+        <button type="submit" class="btn">Filter</button>
+    </form>
+
+    <div style="margin-top: 10px;">
+        <a href="{{ url_for('admin.export_excel') }}" class="btn">Export to Excel</a>
+        <a href="{{ url_for('admin.export_pdf') }}" class="btn">Export to PDF</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tracking #</th>
+                <th>User</th>
+                <th>Type</th>
+                <th>Purpose</th>
+                <th>Status</th>
+                <th>Requested On</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in requests if r.status != 'Resolved' %}
+            <tr>
+                <td>{{ r.tracking_number }}</td>
+                <td>{{ r.user_id }}</td>
+                <td>{{ r.document_type }}</td>
+                <td>{{ r.purpose }}</td>
+                <td>{{ r.status }}</td>
+                <td>{{ r.date_requested.strftime('%Y-%m-%d') }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('admin.update_status', request_id=r.id) }}">
+                        <select name="status">
+                            <option value="Pending" {% if r.status == 'Pending' %}selected{% endif %}>Pending</option>
+                            <option value="Processing" {% if r.status == 'Processing' %}selected{% endif %}>Processing</option>
+                            <option value="Resolved">Resolved</option>
+                        </select>
+                        <button type="submit" class="btn">Update</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

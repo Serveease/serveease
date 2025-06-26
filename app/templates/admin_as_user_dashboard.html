@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}User Dashboard (Admin View){% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h2>Welcome, Admin {{ user.name }} (User View)</h2>
+    <p>You are currently viewing the user dashboard as an admin.</p>
+    <ul class="service-links">
+        <li><a href="{{ url_for('requests.request_document') }}">Request a Document</a></li>
+        <li><a href="{{ url_for('requests.track_requests') }}">Track Your Requests</a></li>
+        <li><a href="{{ url_for('appointment.book_appointment') }}">Book Appointment</a></li>
+        <li><a href="{{ url_for('appointment.view_appointments') }}">View Appointments</a></li>
+        <li><a href="{{ url_for('payment.make_payment') }}">Make a Payment</a></li>
+        <li><a href="{{ url_for('payment.payment_history') }}">Payment History</a></li>
+        <li><a href="{{ url_for('feedback.submit_feedback') }}">Submit Feedback</a></li>
+        <li><a href="{{ url_for('feedback.view_feedback') }}">View Feedback</a></li>
+        <li><a href="{{ url_for('file_routes.downloadable_forms') }}">Downloadable Forms</a></li>
+        <li><a href="{{ url_for('announcement.view_announcements') }}">Community Announcements</a></li>
+    </ul>
+</div>
+{% endblock %}

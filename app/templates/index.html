@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="landing-hero">
+    <div class="hero-content">
+        <h1>Welcome to <span class="brand-highlight">ServeEase</span></h1>
+        <p class="hero-subtext">Your gateway to fast, transparent, and digital municipal services.</p>
+
+        {% if not current_user.is_authenticated %}
+            <a href="{{ url_for('auth.register') }}" class="btn primary-btn">🚀 Get Started</a>
+        {% else %}
+            {% if current_user.role == 'admin' %}
+                <a href="{{ url_for('admin.admin_home') }}" class="btn primary-btn">📊 Go to Dashboard</a>
+            {% else %}
+                <a href="{{ url_for('main.dashboard') }}" class="btn primary-btn">🏠 Go to Dashboard</a>
+            {% endif %}
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

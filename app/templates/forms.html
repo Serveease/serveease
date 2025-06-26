@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="form-container">
+    <h2>📥 Downloadable Forms</h2>
+    <ul>
+        {% for form in forms %}
+        <li style="margin-bottom: 1rem;">
+            <span>{{ form.original_name }}</span>
+            <a href="{{ url_for('static', filename='forms/' ~ form.filename) }}" class="btn" download>Download</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

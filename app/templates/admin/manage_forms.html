@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Manage Downloadable Forms{% endblock %}
+{% block content %}
+<div class="admin-wrapper">
+  <div class="admin-header">
+    <h2>Upload New Form</h2>
+  </div>
+    <form method="POST" enctype="multipart/form-data">
+        <label>Select a file to upload:</label>
+        <input type="file" name="form_file" required>
+        <input type="text" name="description" placeholder="Description (optional)">
+        <button type="submit">Upload</button>
+    </form>
+
+
+  <div class="admin-header">
+    <h2>Existing Forms</h2>
+  </div>
+  <div class="admin-content">
+      <table>
+          <thead>
+              <tr>
+                  <th>Filename</th>
+                  <th>Description</th>
+                  <th>Uploaded On</th>
+                  <th>Download</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for form in forms %}
+              <tr>
+                  <td>{{ form.filename }}</td>
+                  <td>{{ form.description }}</td>
+                  <td>{{ form.upload_date.strftime('%Y-%m-%d') }}</td>
+                  <td><a href="{{ url_for('static', filename='forms/' ~ form.filename) }}" class="btn" download>Download</a></td>
+                  <td>
+                        <form method="POST" action="{{ url_for('admin.delete_form', form_id=form.id) }}">
+                            <button class="btn btn-danger" onclick="return confirm('Delete this form?')">Delete</button>
+                        </form>
+                    </td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+  </div>
+</div>
+{% endblock %}

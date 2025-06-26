@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Downloadable Forms{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>📄 Downloadable Forms</h2>
+
+    {% if files %}
+        <ul class="styled-list">
+            {% for f in files %}
+                <li>
+                    <a href="{{ url_for('file_routes.download_file', filename=f) }}" class="link-file">{{ f }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No forms are available at the moment.</p>
+    {% endif %}
+</div>
+{% endblock %}

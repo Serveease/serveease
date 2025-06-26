@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Your Feedback{% endblock %}
+{% block content %}
+<div class="form-container">
+    <h2>Your Feedback / Complaints</h2>
+    {% if feedbacks %}
+        <ul>
+        {% for f in feedbacks %}
+            <li><strong>Status:</strong> {{ f.status }}<br>{{ f.message }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No feedback submitted yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

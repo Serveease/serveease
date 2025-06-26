@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-page">
+    <div class="dashboard-wrapper">
+        <div class="profile-section">
+            <img src="/static/RESOURCES/loveLunavera.png" class="profile-logo">
+            <h2>Hello, {{ user.name }}!</h2>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Phone Number:</strong> {{ user.phone | capitalize }}</p>
+            <p><strong>Birthday:</strong> {{ user.birthday | capitalize }}</p>
+            <p><strong>Gender:</strong> {{ user.gender | capitalize }}</p>
+            <p><strong>Civil Status:</strong> {{ user.civil_status | capitalize }}</p>
+            <p><strong>Barangay:</strong> {{ user.barangay | capitalize }}</p>
+            <p><strong>District:</strong> {{ user.district | capitalize }}</p>
+            <p><strong>Role:</strong> {{ user.role | capitalize }}</p>
+        </div>
+        <div class="services-section">
+            <h3>Citizen's Portal</h3>
+            <div class="services-grid">
+            <a href="{{ url_for('service.service_directory') }}" class="service-card" style="background-image: url('/static/RESOURCES/loveLunavera.png');">
+                <span>Browse Online Services</span>
+            </a>
+
+            <a href="{{ url_for('requests.request_document') }}" class="service-card" style="background-image: url('/static/RESOURCES/request.jpg');">
+                <span>Request a Document</span>
+            </a>
+
+            <a href="{{ url_for('appointment.book_appointment') }}" class="service-card" style="background-image: url('/static/RESOURCES/appointment.png');">
+                <span>Book Appointment</span>
+            </a>
+
+            <a href="{{ url_for('payment.make_payment') }}" class="service-card" style="background-image: url('/static/RESOURCES/payment.png');">
+                <span>Make a Payment</span>
+            </a>
+
+            <a href="{{ url_for('feedback.submit_feedback') }}" class="service-card" style="background-image: url('/static/RESOURCES/feedback.png');">
+                <span>Submit Feedback</span>
+            </a>
+
+            <a href="{{ url_for('file_routes.downloadable_forms') }}" class="service-card" style="background-image: url('/static/RESOURCES/forms.png');">
+                <span>Downloadable Forms</span>
+            </a>
+
+            <a href="{{ url_for('announcement.view_announcements') }}" class="service-card" style="background-image: url('/static/RESOURCES/news.png');">
+                <span>Community Announcements</span>
+            </a>
+
+            <a href="{{ url_for('main.service_history') }}" class="service-card" style="background-image: url('/static/RESOURCES/history.png');">
+                <span>View History</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

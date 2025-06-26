@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Community Announcements{% endblock %}
+{% block content %}
+<div class="form-container">
+    <h2>Posted Announcements</h2>
+    {% for ann in announcements %}
+        <div class="alert">
+            <strong>{{ ann.title }}</strong> <br>
+            <small>{{ ann.date_posted.strftime('%Y-%m-%d') }}</small>
+            <p>{{ ann.content }}</p>
+            {% if ann.image_filename %}
+                <img src="{{ url_for('static', filename='uploads/announcements/' + ann.image_filename) }}" alt="Announcement Image" style="max-width: 400px; margin-top: 10px;">
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

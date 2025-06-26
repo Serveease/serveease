@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Track Your Request{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Track Your Request</h2>
+
+    <form method="POST" action="{{ url_for('track.track_request') }}">
+        <input type="text" name="tracking_number" placeholder="Enter Tracking Number" required>
+        <button type="submit">Track</button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div id="toast-container">
+          {% for category, message in messages %}
+            <div class="toast toast-{{ category }}">
+              {{ message }}
+              <button class="toast-close" onclick="this.parentElement.remove()">×</button>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+</div>
+{% endblock %}

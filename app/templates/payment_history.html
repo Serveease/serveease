@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Payment History{% endblock %}
+{% block content %}
+<h2>Payment History</h2>
+{% if payments %}
+    <div class="card">
+        <table>
+            <thead>
+                <tr>
+                    <th>Reference</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in payments %}
+                <tr>
+                    <td>{{ p.reference }}</td>
+                    <td>{{ p.amount }}</td>
+                    <td>{{ p.date.strftime('%Y-%m-%d') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <p>No payment records found.</p>
+{% endif %}
+{% endblock %}

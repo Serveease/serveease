@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Announcement Details{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>{{ announcement.title }}</h2>
+    {% if announcement.image_path %}
+        <img src="{{ url_for('static', filename='uploads/' + announcement.image_path) }}" alt="Announcement Image" style="max-width: 100%; margin: 1rem 0;">
+    {% endif %}
+    <p>{{ announcement.content }}</p>
+    <small>Posted on {{ announcement.date_posted.strftime('%Y-%m-%d') }}</small>
+</div>
+<a href="{{ url_for('announcement.view_announcements') }}" class="btn">← Back</a>
+{% endblock %}

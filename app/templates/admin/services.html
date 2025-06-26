@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Service Directory{% endblock %}
+
+{% block content %}
+<div class="admin-wrapper">
+    <div class="admin-header">
+        <h2>Admin Panel: Service Directory</h2>
+    </div>
+    <div class="admin-content">
+        <div class="form-container">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <a href="{{ url_for('service.add_service') }}" class="btn">➕ Add Service</a>
+            </div>
+
+            {% if services %}
+                <div class="dashboard-grid" style="margin-top: 2rem;">
+                    {% for s in services %}
+                        <div class="dashboard-card" style="position: relative;">
+                            <h3 style="margin-top: 0;">{{ s.title }}</h3>
+                            <p>{{ s.description[:120] }}{% if s.description|length > 120 %}...{% endif %}</p>
+                            
+                            <form method="POST" action="{{ url_for('service.delete_service', service_id=s.id) }}" onsubmit="return confirm('Are you sure you want to delete this service?');">
+                                <button type="submit" class="btn" style="background-color: #dc3545; margin-top: 1rem;">🗑️ Delete</button>
+                            </form>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p style="margin-top: 2rem;">No services available.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

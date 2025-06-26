@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Service Details{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>{{ service.title }}</h2>
+
+    <div class="card">
+        <p><strong>🏢 Department:</strong> {{ service.department }}</p>
+        <p><strong>📝 Description:</strong> {{ service.description }}</p>
+
+        <p><strong>📎 Requirements:</strong></p>
+        <ul class="styled-list">
+            {% for req in service.requirements.splitlines() %}
+                <li>{{ req }}</li>
+            {% endfor %}
+        </ul>
+
+        <p><strong>✅ Steps:</strong></p>
+        <ol class="styled-list">
+            {% for step in service.steps.splitlines() %}
+                <li>{{ step }}</li>
+            {% endfor %}
+        </ol>
+    </div>
+
+    <a href="{{ url_for('service.service_directory') }}" class="btn">← Back to Services</a>
+</div>
+{% endblock %}

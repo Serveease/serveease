@@ -1,0 +1,59 @@
+    {% extends 'base.html' %}
+{% block content %}
+<div class="admin-wrapper">
+    <div class="admin-header"><h2>📋 Service History</h2></div>
+    <div class="admin-content">
+        <h3>📑 Document Requests</h3>
+        <table>
+            <tr><th>Tracking ID</th><th>Document</th><th>Date</th></tr>
+            {% for d in doc_requests %}
+            <tr>
+                <td>{{ d.tracking_number }}</td>
+                <td>{{ d.document_type }}</td>
+                <td>{{ d.created_at.strftime('%Y-%m-%d') }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h3>📅 Appointments</h3>
+        <table>
+            <tr><th>Tracking ID</th><th>Purpose</th><th>Date</th></tr>
+            {% for a in appointments %}
+                {% if a.created_at %}
+                    <tr>
+                        <td>{{ a.tracking_number }}</td>
+                        <td>{{ a.purpose }}</td>
+                        <td>{{ a.created_at.strftime('%Y-%m-%d') if a.created_at else 'N/A' }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+
+         <h3>💳 Payments</h3>
+        <table>
+            <tr><th>Tracking Number</th><th>Amount</th><th>Method</th><th>Date</th></tr>
+            {% for pay in payments %}
+            <tr>
+                <td>{{ pay.tracking_number }}</td>
+                <td>{{ pay.amount }}</td>
+                <td>{{ pay.method }}</td>
+                <td>{{ pay.date.strftime('%Y-%m-%d') if pay.date else 'N/A' }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h3>💬 Feedback</h3>
+        <table>
+            <tr><th>Tracking Number</th><th>Category</th><th>Message</th><th>Date</th></tr>
+            {% for fb in feedbacks %}
+            <tr>
+                <td>{{ fb.tracking_number }}</td>
+                <td>{{ fb.category }}</td>
+                <td>{{ fb.message }}</td>
+                <td>{{ fb.date_created.strftime('%Y-%m-%d') if fb.date_created else 'N/A' }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}
