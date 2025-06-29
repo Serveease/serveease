@@ -1,21 +1,40 @@
 {% extends 'base.html' %}
 {% block title %}Add Service{% endblock %}
+
 {% block content %}
-<div class="admin-wrapper">
-  <div class="admin-header">
-    <h2>Admin Panel: Add New Service</h2>
-</div>
-  <div class="admin-content">
-    <div class="form-container">
-        <form method="POST">
-            <input type="text" name="title" placeholder="Service Title" required>
-            <input type="text" name="department" placeholder="Department" required>
-            <textarea name="description" placeholder="Description" required></textarea>
-            <textarea name="requirements" placeholder="Requirements"></textarea>
-            <textarea name="steps" placeholder="Steps"></textarea>
-            <button type="submit" class="btn">Add Service</button>
-        </form>
+<section class="add-service-page">
+  <div class="add-service-header">
+    <h2> Add New Service</h2>
+    <p>Fill out the form below to register a new municipal service.</p>
+  </div>
+
+  <form method="POST" class="add-service-form">
+    <div class="form-field">
+      <label for="title">Service Title</label>
+      <input type="text" id="title" name="title" placeholder="e.g., Barangay Clearance" required>
     </div>
+
+    <div class="form-field">
+      <label for="department">Department</label>
+      <input type="text" id="department" name="department" placeholder="e.g., Barangay Office" required>
     </div>
-</div>
+
+    <div class="form-field">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" placeholder="Brief description of the service..." required></textarea>
+    </div>
+
+    <div class="form-field">
+      <label for="requirements">Requirements</label>
+      <textarea id="requirements" name="requirements" placeholder="List the requirements here, one per line..."></textarea>
+    </div>
+
+    <div class="form-field">
+      <label for="steps">Steps</label>
+      <textarea id="steps" name="steps" placeholder="Describe the process step-by-step..."></textarea>
+    </div>
+
+    <button type="submit" class="btn-submit-service">Submit Service</button>
+  </form>
+</section>
 {% endblock %}

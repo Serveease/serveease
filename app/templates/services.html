@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}Available Services{% endblock %}
+{% block body_class %}services-page{% endblock %}
 
 {% block content %}
-<div class="form-container">
-    <h2>📚 Available Services</h2>
+<div class="services-form-container">
+    <h2 class="services-title">Available Services</h2>
 
     <form method="GET" class="inline-form">
         <label for="department" class="form-label">Filter by Department:</label>
@@ -17,11 +18,13 @@
 
     <div class="services-grid">
         {% for s in services %}
-        <div class="service-card">
-            <h3>{{ s.title }}</h3>
-            <p>{{ s.description[:100] }}...</p>
-            <a href="{{ url_for('service.service_detail', service_id=s.id) }}" class="btn-small">View Details</a>
-        </div>
+<div class="service-card">
+  <div class="card-header">
+    <h3>{{ s.title }}</h3>
+    <a href="{{ url_for('service.service_detail', service_id=s.id) }}" class="btn-small">View Details</a>
+  </div>
+  <p>{{ s.description[:100] }}...</p>
+</div>
         {% endfor %}
     </div>
 </div>

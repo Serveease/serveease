@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 {% block title %}Make a Payment{% endblock %}
+{% block body_class %}payment-page{% endblock %}
+
 {% block content %}
-<div class="form-container">
+<div class="payment-container">
   <h2>💳 Make a Payment</h2>
 
-  <form method="POST">
-    <input type="number" name="amount" step="0.01" placeholder="Enter Amount" required><br><br>
+  <form method="POST" class="payment-form">
+    <label for="amount">Amount</label>
+    <input type="number" name="amount" step="0.01" placeholder="Enter Amount" required>
 
-    <!-- LOOK FOR ICONS OF THESE PAYMENT METHODS PUT IT INSIDE THE RESOURCES FOLDER -VINCENT -->
     <h3>Select Payment Method:</h3>
     <div class="payment-icons">
       <img src="{{ url_for('static', filename='RESOURCES/gcash.png') }}" alt="GCash" class="pay-icon" data-method="GCash">
@@ -16,32 +18,11 @@
     </div>
 
     <input type="hidden" name="method" id="paymentMethod" required>
-    <br>
+    <div id="methodError" class="error-msg">Please select a payment method.</div>
+
     <button type="submit">Submit Payment</button>
   </form>
-
-  <div id="methodError" style="color: red; display: none;">Please select a payment method.</div>
 </div>
-
-<style>
-  .payment-icons {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-  }
-  .pay-icon {
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
-    border: 2px solid transparent;
-    border-radius: 10px;
-    transition: 0.3s;
-  }
-  .pay-icon.selected {
-    border: 2px solid #003366;
-    box-shadow: 0 0 10px #003366;
-  }
-</style>
 
 <script>
   const icons = document.querySelectorAll('.pay-icon');
@@ -64,4 +45,5 @@
     }
   });
 </script>
+
 {% endblock %}

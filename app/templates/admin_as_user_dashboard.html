@@ -1,21 +1,59 @@
 {% extends 'base.html' %}
 {% block title %}User Dashboard (Admin View){% endblock %}
+{% block body_class %}dashboard-page{% endblock %}
 
 {% block content %}
-<div class="dashboard">
-    <h2>Welcome, Admin {{ user.name }} (User View)</h2>
-    <p>You are currently viewing the user dashboard as an admin.</p>
-    <ul class="service-links">
-        <li><a href="{{ url_for('requests.request_document') }}">Request a Document</a></li>
-        <li><a href="{{ url_for('requests.track_requests') }}">Track Your Requests</a></li>
-        <li><a href="{{ url_for('appointment.book_appointment') }}">Book Appointment</a></li>
-        <li><a href="{{ url_for('appointment.view_appointments') }}">View Appointments</a></li>
-        <li><a href="{{ url_for('payment.make_payment') }}">Make a Payment</a></li>
-        <li><a href="{{ url_for('payment.payment_history') }}">Payment History</a></li>
-        <li><a href="{{ url_for('feedback.submit_feedback') }}">Submit Feedback</a></li>
-        <li><a href="{{ url_for('feedback.view_feedback') }}">View Feedback</a></li>
-        <li><a href="{{ url_for('file_routes.downloadable_forms') }}">Downloadable Forms</a></li>
-        <li><a href="{{ url_for('announcement.view_announcements') }}">Community Announcements</a></li>
-    </ul>
+<div class="dashboard-page">
+    <div class="dashboard-wrapper">
+        <div class="profile-section">
+            <img src="/static/RESOURCES/loveLunavera.png" class="profile-logo">
+            <h2>Hello, Admin {{ user.name }}!</h2>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Phone Number:</strong> {{ user.phone | capitalize }}</p>
+            <p><strong>Birthday:</strong> {{ user.birthday | capitalize }}</p>
+            <p><strong>Gender:</strong> {{ user.gender | capitalize }}</p>
+            <p><strong>Civil Status:</strong> {{ user.civil_status | capitalize }}</p>
+            <p><strong>Barangay:</strong> {{ user.barangay | capitalize }}</p>
+            <p><strong>District:</strong> {{ user.district | capitalize }}</p>
+            <p><strong>Role:</strong> Admin (Viewing User Dashboard)</p>
+        </div>
+
+        <div class="services-section">
+            <h3>Citizen's Portal (Admin View)</h3>
+            <div class="services-grid">
+                <a href="{{ url_for('service.service_directory') }}" class="service-card" style="background-image: url('/static/RESOURCES/loveLunavera.png');">
+                    <span>Browse Online Services</span>
+                </a>
+
+                <a href="{{ url_for('requests.request_document') }}" class="service-card" style="background-image: url('/static/RESOURCES/request.jpg');">
+                    <span>Request a Document</span>
+                </a>
+
+                <a href="{{ url_for('appointment.book_appointment') }}" class="service-card" style="background-image: url('/static/RESOURCES/appointment.png');">
+                    <span>Book Appointment</span>
+                </a>
+
+                <a href="{{ url_for('payment.make_payment') }}" class="service-card" style="background-image: url('/static/RESOURCES/payment.png');">
+                    <span>Make a Payment</span>
+                </a>
+
+                <a href="{{ url_for('feedback.submit_feedback') }}" class="service-card" style="background-image: url('/static/RESOURCES/feedback.png');">
+                    <span>Submit Feedback</span>
+                </a>
+
+                <a href="{{ url_for('file_routes.downloadable_forms') }}" class="service-card" style="background-image: url('/static/RESOURCES/forms.png');">
+                    <span>Downloadable Forms</span>
+                </a>
+
+                <a href="{{ url_for('announcement.view_announcements') }}" class="service-card" style="background-image: url('/static/RESOURCES/news.png');">
+                    <span>Community Announcements</span>
+                </a>
+
+                <a href="{{ url_for('main.service_history') }}" class="service-card" style="background-image: url('/static/RESOURCES/history.png');">
+                    <span>View History</span>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

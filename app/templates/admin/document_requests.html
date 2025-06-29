@@ -44,14 +44,15 @@
                 <td>{{ r.status }}</td>
                 <td>{{ r.date_requested.strftime('%Y-%m-%d') }}</td>
                 <td>
-                    <form method="POST" action="{{ url_for('admin.update_status', request_id=r.id) }}">
-                        <select name="status">
-                            <option value="Pending" {% if r.status == 'Pending' %}selected{% endif %}>Pending</option>
-                            <option value="Processing" {% if r.status == 'Processing' %}selected{% endif %}>Processing</option>
-                            <option value="Resolved">Resolved</option>
-                        </select>
-                        <button type="submit" class="btn">Update</button>
-                    </form>
+                    <form method="POST" action="{{ url_for('admin.update_status', request_id=r.id) }}" class="status-form" data-id="{{ r.id }}">
+    <select name="status">
+        <option value="Pending" {% if r.status == 'Pending' %}selected{% endif %}>Pending</option>
+        <option value="Processing" {% if r.status == 'Processing' %}selected{% endif %}>Processing</option>
+        <option value="Resolved">Resolved</option>
+    </select>
+    <button type="submit" class="btn">Update</button>
+</form>
+
                 </td>
             </tr>
             {% endfor %}
@@ -59,4 +60,34 @@
     </table>
   </div>
 </div>
+
+
+<script>
+document.querySelectorAll('.status-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();  // prevent page reload
+
+        const requestId = this.dataset.id;
+        const formData = new FormData(this);
+
+        fetch(`/admin/update-status/${requestId}`, {
+            method: 'POST',
+            body: formData,
+        })
+        .then(res => {
+            if (res.ok) {
+                this.querySelector('.btn').textContent = "Updated ✓";
+                this.querySelector('.btn').style.backgroundColor = "green";
+            } else {
+                alert("Update failed. Please try again.");
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert("Error occurred during update.");
+        });
+    });
+});
+</script>
+
 {% endblock %}

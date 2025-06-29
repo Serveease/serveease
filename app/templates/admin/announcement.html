@@ -1,34 +1,36 @@
 {% extends 'base.html' %}
+{% block title %}Admin Panel: Announcements{% endblock %}
+
 {% block content %}
-<div class="admin-wrapper">
-    <div class="admin-header">
-        <h2>Admin Panel: Announcement</h2>
+<div class="announcement-panel">
+  <h2 class="announcement-title"> Admin Panel: Manage Announcements</h2>
+
+  <!-- Post New Announcement -->
+  <form method="POST" enctype="multipart/form-data" class="announcement-form">
+    <input type="text" name="title" placeholder="Announcement Title" required>
+    <textarea name="content" placeholder="Write your announcement..." required></textarea>
+    <input type="file" name="image" accept="image/*" required>
+    <button type="submit" class="btn-post"> Post</button>
+  </form>
+
+  <hr class="announcement-divider">
+
+  <!-- Search Bar -->
+  <form method="GET" class="announcement-search">
+    <input type="text" name="search" placeholder=" Search Title..." value="{{ request.args.get('search', '') }}">
+    <button type="submit" class="btn-search">Search</button>
+  </form>
+
+  <!-- List of Announcements -->
+  <ul class="announcement-list">
+    {% for ann in announcements %}
+      <li class="announcement-item">
+        <a href="{{ url_for('announcement.view_announcement', announcement_id=ann.id) }}">{{ ann.title }}</a>
+        <form action="{{ url_for('announcement.delete_announcement', announcement_id=ann.id) }}" method="POST">
+          <button type="submit" class="btn-delete" onclick="return confirm('Are you sure you want to delete this announcement?')">🗑️ Delete</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
 </div>
-    <div class="admin-content">
-        <form method="POST" enctype="multipart/form-data">
-            <input type="text" name="title" placeholder="Title" required>
-            <textarea name="content" placeholder="Content" required></textarea>
-            <input type="file" name="image" accept="image/*" required>
-            <button type="submit" class="btn">Post</button>
-        </form>
-
-        <hr>
-
-        <form method="GET">
-            <input type="text" name="search" placeholder="Search Title..." value="{{ request.args.get('search', '') }}">
-            <button type="submit" class="btn">Search</button>
-        </form>
-
-        <ul>
-            {% for ann in announcements %}
-                <li>
-                    <a href="{{ url_for('announcement.view_announcement', announcement_id=ann.id) }}">{{ ann.title }}</a>
-                    <form action="{{ url_for('announcement.delete_announcement', announcement_id=ann.id) }}" method="POST" style="display:inline;">
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this?')">Delete</button>
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-    </div>
 {% endblock %}

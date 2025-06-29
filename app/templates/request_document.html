@@ -1,22 +1,42 @@
 {% extends 'base.html' %}
 {% block title %}Request a Document{% endblock %}
+{% block body_class %}request-page{% endblock %}
+
 {% block content %}
-<div class="form-container">
+<div class="request-form-container">
   <h2>Request Document</h2>
   <form method="POST" enctype="multipart/form-data">
+    
     <label for="document_type">Document Type</label>
-    <select name="document_type" required>
+    <select name="document_type" id="document_type" required>
         <option value="">Select a document</option>
         <option value="Barangay Clearance">Barangay Clearance</option>
         <option value="Certificate of Residency">Certificate of Residency</option>
         <option value="Indigency Certificate">Indigency Certificate</option>
         <option value="Business Permit">Business Permit</option>
         <option value="Permit to Construct">Permit to Construct</option>
-        <!-- Add more documents here -->
-    </select><br>
-    <textarea name="purpose" placeholder="Purpose" required></textarea>
-    <label>Upload supporting document:</label>
-    <input type="file" name="file">
+    </select>
+
+    <label for="purpose">Purpose</label>
+    <textarea name="purpose" id="purpose" placeholder="Enter the purpose of your request" required></textarea>
+
+    <label for="file">Upload Supporting Document (optional)</label>
+    <div class="upload-wrapper">
+      <div class="container">
+        <div class="folder">
+          <div class="front-side">
+            <div class="tip"></div>
+            <div class="cover"></div>
+          </div>
+          <div class="back-side cover"></div>
+        </div>
+        <label class="custom-file-upload">
+          <input type="file" name="file" id="file">
+          Upload a File
+        </label>
+      </div>
+    </div>
+
     <button type="submit">Submit Request</button>
   </form>
 </div>

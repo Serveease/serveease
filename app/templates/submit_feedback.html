@@ -1,12 +1,27 @@
 {% extends 'base.html' %}
 {% block title %}Submit Feedback{% endblock %}
+{% block body_class %}feedback-page{% endblock %}
+
 {% block content %}
-<div class="form-container">
-    <h2>Submit Feedback</h2>
-    <form method="POST">
-        <input type="text" name="subject" placeholder="Subject" required>
-        <textarea name="message" rows="5" placeholder="Write your feedback here..." required></textarea>
-        <button type="submit">Submit</button>
-    </form>
+<div class="feedback-container">
+  <h2 class="feedback-title">Submit Feedback or Complaint</h2>
+
+  <form method="POST" class="feedback-form">
+    <textarea name="message" rows="6" placeholder="Enter your concern or suggestion..." required></textarea>
+    <button type="submit" class="feedback-btn">Send Feedback</button>
+  </form>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div id="toast-container">
+        {% for category, message in messages %}
+          <div class="toast toast-{{ category }}">
+            {{ message }}
+            <button class="toast-close" onclick="this.parentElement.remove()">×</button>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
 </div>
 {% endblock %}

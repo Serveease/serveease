@@ -15,8 +15,38 @@
         <hr>
         <p>Don't have an account? <a href="{{ url_for('auth.register') }}">Register here</a></p>
     </div>
-    <div class="right-background">
-        <img src="{{ url_for('static', filename='RESOURCES/citypic.jpg') }}" alt="City Image">
+<div class="right-background">
+    <div class="slider">
+        <div class="list">
+            <div class="item" style="--position: 1">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img1.jpg') }}" alt="Slide 1">
+            </div>
+            <div class="item" style="--position: 2">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img2.jpg') }}" alt="Slide 2">
+            </div>
+            <div class="item" style="--position: 3">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img3.jpg') }}" alt="Slide 3">
+            </div>
+            <div class="item" style="--position: 4">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img4.WEBP') }}" alt="Slide 4">
+            </div>
+            <div class="item" style="--position: 5">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img5.WEBP') }}" alt="Slide 5">
+            </div>
+            <div class="item" style="--position: 6">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img6.png') }}" alt="Slide 6">
+            </div>
+            <div class="item" style="--position: 7">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img7.png') }}" alt="Slide 7">
+            </div>
+            <div class="item" style="--position: 8">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img8.jpg') }}" alt="Slide 8">
+            </div>
+            <div class="item" style="--position: 9">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img9.jpg') }}" alt="Slide 9">
+            </div>
+        </div>
     </div>
+</div>
 </div>
 {% endblock %}
