@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}Payment History{% endblock %}
 {% block content %}
-<h2>Payment History</h2>
-{% if payments %}
+<div class="payment-history-container">
+    <h2>Payment History</h2>
+    
+    {% if payments %}
     <div class="card">
-        <table>
+        <table class="payment-table">
             <thead>
                 <tr>
                     <th>Reference</th>
@@ -16,14 +18,15 @@
                 {% for p in payments %}
                 <tr>
                     <td>{{ p.reference }}</td>
-                    <td>{{ p.amount }}</td>
-                    <td>{{ p.date.strftime('%Y-%m-%d') }}</td>
+                    <td>₱{{ '{:,.2f}'.format(p.amount) }}</td>
+                    <td>{{ p.date.strftime('%B %d, %Y') }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-{% else %}
-    <p>No payment records found.</p>
-{% endif %}
+    {% else %}
+        <p class="no-records">No payment records found.</p>
+    {% endif %}
+</div>
 {% endblock %}

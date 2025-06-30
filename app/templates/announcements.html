@@ -1,17 +1,80 @@
 {% extends 'base.html' %}
 {% block title %}Community Announcements{% endblock %}
+{% block body_class %}announcements-page{% endblock %}
+
 {% block content %}
-<div class="form-container">
-    <h2>Posted Announcements</h2>
-    {% for ann in announcements %}
-        <div class="alert">
-            <strong>{{ ann.title }}</strong> <br>
-            <small>{{ ann.date_posted.strftime('%Y-%m-%d') }}</small>
-            <p>{{ ann.content }}</p>
-            {% if ann.image_filename %}
-                <img src="{{ url_for('static', filename='uploads/announcements/' + ann.image_filename) }}" alt="Announcement Image" style="max-width: 400px; margin-top: 10px;">
-            {% endif %}
-        </div>
-    {% endfor %}
+<div class="announcements-container">
+<div class="announcement-header">
+  <img src="{{ url_for('static', filename='RESOURCES/logo.png') }}" alt="Logo" class="announcement-logo">
+  <h2 class="page-title">Community Announcements</h2>
 </div>
+
+
+  {% if announcements %}
+{% for ann in announcements %}
+  <div class="announcement-card"
+       style="background-image: url('{{ url_for('static', filename='uploads/announcements/' ~ ann.image_filename) }}');"
+       data-title="{{ ann.title }}"
+       data-date="{{ ann.date_posted.strftime('%B %d, %Y') }}"
+       data-content="{{ ann.content }}"
+       data-image="{{ ann.image_filename }}">
+    <h3>{{ ann.title }}</h3>
+    <span class="date">{{ ann.date_posted.strftime('%B %d, %Y') }}</span>
+    <p class="truncate">{{ ann.content }}</p>
+    <span class="see-more">See more...</span>
+  </div>
+{% endfor %}
+
+  {% else %}
+    <p class="no-announcement">No announcements at this time.</p>
+  {% endif %}
+</div>
+
+<!-- Modal -->
+<div class="announcement-modal" id="announcementModal">
+  <div class="modal-content">
+    <span class="close-modal" id="closeModal">&times;</span>
+    <h3 id="modalTitle"></h3>
+    <span class="date" id="modalDate"></span>
+    <p id="modalContent"></p>
+    <div id="modalImageContainer"></div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.announcement-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const title = card.dataset.title;
+    const date = card.dataset.date;
+    const content = card.dataset.content;
+    const image = card.dataset.image;
+
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalDate').textContent = date;
+    document.getElementById('modalContent').textContent = content;
+
+    const imageContainer = document.getElementById('modalImageContainer');
+    imageContainer.innerHTML = '';
+    if (image) {
+      const img = document.createElement('img');
+      img.src = `/static/uploads/announcements/${image}`;
+      img.alt = "Announcement Image";
+      imageContainer.appendChild(img);
+    }
+
+    document.getElementById('announcementModal').style.display = 'flex';
+  });
+});
+
+document.getElementById('closeModal').addEventListener('click', () => {
+  document.getElementById('announcementModal').style.display = 'none';
+});
+
+window.addEventListener('click', e => {
+  const modal = document.getElementById('announcementModal');
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+</script>
 {% endblock %}

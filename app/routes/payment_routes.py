@@ -50,7 +50,7 @@ def make_payment():
             💳 Method: {method}
             📅 Date: {new_payment.date.strftime('%Y-%m-%d')}
 
-            Track your payment at: https://yourdomain.com/track-services
+            Track your payment at: https://serveease-t64f.onrender.com
 
             Regards,  
             ServeEase Team

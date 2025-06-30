@@ -2,26 +2,76 @@
 {% block title %}Admin Dashboard{% endblock %}
 
 {% block content %}
-<div class="admin-wrapper">
-  <div class="admin-header">
-    <h2>Admin Dashboard</h2>
-  </div>
-    <div class="admin-content">
-        <div class="form-container">
-            <ul class="service-links">
-                <li><a href="{{ url_for('admin.admin_document_requests') }}">Manage Document Requests</a></li>
-                <li><a href="{{ url_for('service.add_service') }}">Add New Service</a></li>
-                <li><a href="{{ url_for('service.service_directory') }}">View Services Directory</a></li>
-                <li><a href="{{ url_for('announcement.post_announcement') }}">Manage Announcements</a></li>
-                <li><a href="{{ url_for('admin.manage_appointments') }}">Manage Appointments</a></li>
-                <li><a href="{{ url_for('admin.manage_feedback') }}">Manage Feedback</a></li>
-                <li><a href="{{ url_for('admin.manage_forms') }}" class="dashboard-card">📄 Manage Forms</a></li>
-
-
-                <!-- <-- <li><a href="{{ url_for('payment.payment_history') }}">Payment History</a></li>
-                <li><a href="{{ url_for('file_routes.downloadable_forms') }}">Manage Downloadable Forms</a></li> -->
-            </ul>
-        </div>
+<div class="admin-dashboard-page">
+  <div class="admin-dashboard-wrapper">
+    <div class="admin-dashboard-header">
+      <h2>Welcome, Admin!</h2>
+      <p>ayoko na</p>
     </div>
+
+    <div class="admin-cards-grid">
+
+      <a href="{{ url_for('admin.admin_document_requests') }}" class="admin-card">
+        <h3 class="card__title"> Document Requests</h3>
+        <p class="card__content">Review, approve, or decline all document requests.</p>
+        <div class="card__arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="15" width="15">
+            <path fill="#fff" d="M13.47 17.97c-.29.29-.29.76 0 1.06s.76.29 1.06 0l5.79-5.79a1.5 1.5 0 0 0 0-2.12l-5.79-5.79a.75.75 0 1 0-1.06 1.06l5.22 5.22H4a.75.75 0 0 0 0 1.5h14.69l-5.22 5.22z"/>
+          </svg>
+        </div>
+      </a>
+
+      <a href="{{ url_for('service.add_service') }}" class="admin-card">
+        <h3 class="card__title"> Add Service</h3>
+        <p class="card__content">Create new service entries for citizens to access.</p>
+        <div class="card__arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="15" width="15">
+            <path fill="#fff" d="M13.47 17.97c-.29.29-.29.76 0 1.06s.76.29 1.06 0l5.79-5.79a1.5 1.5 0 0 0 0-2.12l-5.79-5.79a.75.75 0 1 0-1.06 1.06l5.22 5.22H4a.75.75 0 0 0 0 1.5h14.69l-5.22 5.22z"/>
+          </svg>
+        </div>
+      </a>
+
+      <a href="{{ url_for('announcement.post_announcement') }}" class="admin-card">
+        <h3 class="card__title"> Announcements</h3>
+        <p class="card__content">Post important updates or community news.</p>
+        <div class="card__arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="15" width="15">
+            <path fill="#fff" d="M13.47 17.97c-.29.29-.29.76 0 1.06s.76.29 1.06 0l5.79-5.79a1.5 1.5 0 0 0 0-2.12l-5.79-5.79a.75.75 0 1 0-1.06 1.06l5.22 5.22H4a.75.75 0 0 0 0 1.5h14.69l-5.22 5.22z"/>
+          </svg>
+        </div>
+      </a>
+
+      <a href="{{ url_for('admin.manage_appointments') }}" class="admin-card">
+        <h3 class="card__title"> Appointments</h3>
+        <p class="card__content">View and manage user appointment bookings.</p>
+        <div class="card__arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="15" width="15">
+            <path fill="#fff" d="M13.47 17.97c-.29.29-.29.76 0 1.06s.76.29 1.06 0l5.79-5.79a1.5 1.5 0 0 0 0-2.12l-5.79-5.79a.75.75 0 1 0-1.06 1.06l5.22 5.22H4a.75.75 0 0 0 0 1.5h14.69l-5.22 5.22z"/>
+          </svg>
+        </div>
+      </a>
+
+      <a href="{{ url_for('admin.manage_feedback') }}" class="admin-card">
+        <h3 class="card__title"> Feedback</h3>
+        <p class="card__content">Handle submitted concerns and suggestions.</p>
+        <div class="card__arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="15" width="15">
+            <path fill="#fff" d="M13.47 17.97c-.29.29-.29.76 0 1.06s.76.29 1.06 0l5.79-5.79a1.5 1.5 0 0 0 0-2.12l-5.79-5.79a.75.75 0 1 0-1.06 1.06l5.22 5.22H4a.75.75 0 0 0 0 1.5h14.69l-5.22 5.22z"/>
+          </svg>
+        </div>
+      </a>
+
+      <a href="{{ url_for('admin.manage_forms') }}" class="admin-card">
+        <h3 class="card__title"> Forms</h3>
+        <p class="card__content">Update and manage downloadable municipal forms.</p>
+        <div class="card__arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="15" width="15">
+            <path fill="#fff" d="M13.47 17.97c-.29.29-.29.76 0 1.06s.76.29 1.06 0l5.79-5.79a1.5 1.5 0 0 0 0-2.12l-5.79-5.79a.75.75 0 1 0-1.06 1.06l5.22 5.22H4a.75.75 0 0 0 0 1.5h14.69l-5.22 5.22z"/>
+          </svg>
+        </div>
+      </a>
+
+    </div>
+  </div>
 </div>
 {% endblock %}

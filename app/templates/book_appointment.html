@@ -1,16 +1,31 @@
 {% extends 'base.html' %}
 {% block title %}Book Appointment{% endblock %}
+{% block body_class %}appointment-page{% endblock %}
+
 {% block content %}
-<div class="form-container">
+<div class="appointment-container">
+  <div class="appointment-form">
     <h2>Book an Appointment</h2>
     <form method="POST">
-        <label for="purpose">Purpose</label>
-        <input type="text" name="purpose" required>
+      <label for="purpose">Purpose</label>
+      <input type="text" name="purpose" required>
 
-        <label for="schedule_date">Date</label>
-        <input type="datetime-local" name="schedule_date" required>
+      <label for="schedule_date">Date</label>
+      <input type="datetime-local" name="schedule_date" required>
 
-        <button type="submit">Submit</button>
+      <button type="submit">Submit</button>
     </form>
+  </div>
+  <div class="calendar-preview">
+    <h3>Your Schedule</h3>
+    <p>Pick a date to view your booking.</p>
+    <div class="schedule-box">
+      <ul>
+        <li><strong>Mon:</strong> 10:00 AM - 11:00 AM</li>
+        <li><strong>Wed:</strong> 1:00 PM - 2:00 PM</li>
+        <li><strong>Fri:</strong> 3:00 PM - 4:00 PM</li>
+      </ul>
+    </div>
+  </div>
 </div>
 {% endblock %}

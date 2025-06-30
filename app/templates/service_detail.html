@@ -1,29 +1,30 @@
 {% extends 'base.html' %}
 {% block title %}Service Details{% endblock %}
+{% block body_class %}service-detail-page{% endblock %}
 
 {% block content %}
-<div class="form-container">
-    <h2>{{ service.title }}</h2>
+<div class="service-detail-container">
+  <h2 class="service-detail-title">{{ service.title }}</h2>
 
-    <div class="card">
-        <p><strong>🏢 Department:</strong> {{ service.department }}</p>
-        <p><strong>📝 Description:</strong> {{ service.description }}</p>
+  <div class="service-detail-card">
+    <p><strong class="label">Department:</strong> {{ service.department }}</p>
+    <p><strong class="label">Description:</strong> {{ service.description }}</p>
 
-        <p><strong>📎 Requirements:</strong></p>
-        <ul class="styled-list">
-            {% for req in service.requirements.splitlines() %}
-                <li>{{ req }}</li>
-            {% endfor %}
-        </ul>
+    <p><strong class="label">Requirements:</strong></p>
+    <ul class="styled-list">
+      {% for req in service.requirements.splitlines() %}
+        <li>{{ req }}</li>
+      {% endfor %}
+    </ul>
 
-        <p><strong>✅ Steps:</strong></p>
-        <ol class="styled-list">
-            {% for step in service.steps.splitlines() %}
-                <li>{{ step }}</li>
-            {% endfor %}
-        </ol>
-    </div>
+    <p><strong class="label">Steps:</strong></p>
+    <ol class="styled-list">
+      {% for step in service.steps.splitlines() %}
+        <li>{{ step }}</li>
+      {% endfor %}
+    </ol>
+  </div>
 
-    <a href="{{ url_for('service.service_directory') }}" class="btn">← Back to Services</a>
+  <a href="{{ url_for('service.service_directory') }}" class="btn-back">← Back to Services</a>
 </div>
 {% endblock %}

@@ -1,55 +1,78 @@
 {% extends 'base.html' %}
 {% block title %}Tracking Result{% endblock %}
+{% block body_class %}tracking-page{% endblock %}
 
 {% block content %}
-<div class="form-container">
-    <h2>Tracking Result</h2>
+<div class="tracking-container">
+  <h2>📍 Tracking Result</h2>
 
+  <form method="GET" class="record-type-form">
+    <label for="type">Select Record Type:</label>
+    <select name="type" id="type" required>
+      <option value="">-- Choose --</option>
+      <option value="doc" {% if type == 'doc' %}selected{% endif %}>📄 Document</option>
+      <option value="app" {% if type == 'app' %}selected{% endif %}>📅 Appointment</option>
+      <option value="pay" {% if type == 'pay' %}selected{% endif %}>💳 Payment</option>
+      <option value="fb"  {% if type == 'fb' %}selected{% endif %}>💬 Feedback</option>
+    </select>
+    <input type="text" name="tracking" placeholder="Enter Tracking Number" value="{{ tracking }}" required>
+    <button type="submit">🔍 Search</button>
+  </form>
+
+  <div class="tracking-card">
     {% if doc %}
     <h3>📄 Document Request</h3>
     <table>
-        <tr><th>Tracking Number:</th><td>{{ doc.tracking_number }}</td></tr>
-        <tr><th>User ID:</th><td>{{ doc.user_id }}</td></tr>
-        <tr><th>Document Type:</th><td>{{ doc.document_type }}</td></tr>
-        <tr><th>Purpose:</th><td>{{ doc.purpose }}</td></tr>
-        <tr><th>Status:</th><td>{{ doc.status }}</td></tr>
-        <tr><th>Date Requested:</th><td>{{ doc.date_requested.strftime('%Y-%m-%d') }}</td></tr>
+      <tr><th>Tracking Number:</th><td>{{ doc.tracking_number }}</td></tr>
+      <tr><th>User ID:</th><td>{{ doc.user_id }}</td></tr>
+      <tr><th>Document Type:</th><td>{{ doc.document_type }}</td></tr>
+      <tr><th>Purpose:</th><td>{{ doc.purpose }}</td></tr>
+      <tr><th>Status:</th><td>{{ doc.status }}</td></tr>
+      <tr><th>Date Requested:</th><td>{{ doc.date_requested.strftime('%Y-%m-%d') }}</td></tr>
     </table>
+
     {% elif app %}
     <h3>📅 Appointment</h3>
     <table>
-        <tr><th>Tracking Number:</th><td>{{ app.tracking_number }}</td></tr>
-        <tr><th>User ID:</th><td>{{ app.user_id }}</td></tr>
-        <tr><th>Service:</th><td>{{ app.service }}</td></tr>
-        <tr><th>Date:</th><td>{{ app.date }}</td></tr>
-        <tr><th>Time:</th><td>{{ app.time }}</td></tr>
-        <tr><th>Status:</th><td>{{ app.status }}</td></tr>
+      <tr><th>Tracking Number:</th><td>{{ app.tracking_number }}</td></tr>
+      <tr><th>User ID:</th><td>{{ app.user_id }}</td></tr>
+      <tr><th>Service:</th><td>{{ app.service }}</td></tr>
+      <tr><th>Date:</th><td>{{ app.date }}</td></tr>
+      <tr><th>Time:</th><td>{{ app.time }}</td></tr>
+      <tr><th>Status:</th><td>{{ app.status }}</td></tr>
     </table>
+
     {% elif pay %}
     <h3>💳 Payment</h3>
     <table>
-        <tr><th>Tracking Number:</th><td>{{ pay.tracking_number }}</td></tr>
-        <tr><th>User ID:</th><td>{{ pay.user_id }}</td></tr>
-        <tr><th>Amount:</th><td>₱{{ pay.amount }}</td></tr>
-        <tr><th>Method:</th><td>{{ pay.method }}</td></tr>
-        <tr><th>Status:</th><td>{{ pay.status }}</td></tr>
-        <tr><th>Date:</th><td>{{ pay.date.strftime('%Y-%m-%d') }}</td></tr>
+      <tr><th>Tracking Number:</th><td>{{ pay.tracking_number }}</td></tr>
+      <tr><th>User ID:</th><td>{{ pay.user_id }}</td></tr>
+      <tr><th>Amount:</th><td>₱{{ pay.amount }}</td></tr>
+      <tr><th>Method:</th><td>{{ pay.method }}</td></tr>
+      <tr><th>Status:</th><td>{{ pay.status }}</td></tr>
+      <tr><th>Date:</th><td>{{ pay.date.strftime('%Y-%m-%d') }}</td></tr>
     </table>
+
     {% elif fb %}
     <h3>💬 Feedback</h3>
     <table>
-        <tr><th>Tracking Number:</th><td>{{ fb.tracking_number }}</td></tr>
-        <tr><th>User ID:</th><td>{{ fb.user_id }}</td></tr>
-        <tr><th>Category:</th><td>{{ fb.category }}</td></tr>
-        <tr><th>Message:</th><td>{{ fb.message }}</td></tr>
-        <tr><th>Status:</th><td>{{ fb.status }}</td></tr>
-        <tr><th>Date:</th><td>{{ fb.date_created.strftime('%Y-%m-%d') }}</td></tr>
+      <tr><th>Tracking Number:</th><td>{{ fb.tracking_number }}</td></tr>
+      <tr><th>User ID:</th><td>{{ fb.user_id }}</td></tr>
+      <tr><th>Category:</th><td>{{ fb.category }}</td></tr>
+      <tr><th>Message:</th><td>{{ fb.message }}</td></tr>
+      <tr><th>Status:</th><td>{{ fb.status }}</td></tr>
+      <tr><th>Date:</th><td>{{ fb.date_created.strftime('%Y-%m-%d') }}</td></tr>
     </table>
-    {% else %}
-    <p>No matching record found for that tracking number.</p>
-    {% endif %}
 
-    <br>
-    <a href="{{ url_for('track.track_services') }}" class="btn">🔙 Track Another</a>
+    {% elif type %}
+    <div class="no-result">
+      <p>No matching record found for tracking number <strong>{{ tracking }}</strong>.</p>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="btn-wrapper">
+    <a href="{{ url_for('track.track_services') }}" class="track-btn">🔙 Back</a>
+  </div>
 </div>
 {% endblock %}

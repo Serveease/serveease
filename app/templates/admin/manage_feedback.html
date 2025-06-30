@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}Manage Feedback{% endblock %}
+
 {% block content %}
-<div class="admin-wrapper">
-    <div class="admin-header">
-        <h2>Admin Panel: [Feature Title]</h2>
+<div class="admin-page">
+    <div class="admin-panel-header">
+        <h2>Admin Panel: Manage Feedback</h2>
     </div>
-    <div class="admin-content">
-        <div class="form-container">
-            <h2>Feedback Management</h2>
+
+    <div class="admin-panel-content">
+        <div class="admin-card">
+            <h3 class="admin-card-title">Feedback Management</h3>
 
             {% if feedbacks %}
-            <table>
+            <table class="styled-table">
                 <thead>
                     <tr>
                         <th>User ID</th>
@@ -27,12 +29,14 @@
                         <td>{{ fb.status }}</td>
                         <td>
                             <form method="POST" action="{{ url_for('admin.update_feedback_status', feedback_id=fb.id) }}">
-                                <select name="status">
-                                    <option value="Submitted" {% if fb.status == 'Submitted' %}selected{% endif %}>Submitted</option>
-                                    <option value="In Progress" {% if fb.status == 'In Progress' %}selected{% endif %}>In Progress</option>
-                                    <option value="Resolved" {% if fb.status == 'Resolved' %}selected{% endif %}>Resolved</option>
-                                </select>
-                                <button type="submit">Update</button>
+                                <div class="form-inline">
+                                    <select name="status">
+                                        <option value="Submitted" {% if fb.status == 'Submitted' %}selected{% endif %}>Submitted</option>
+                                        <option value="In Progress" {% if fb.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+                                        <option value="Resolved" {% if fb.status == 'Resolved' %}selected{% endif %}>Resolved</option>
+                                    </select>
+                                    <button type="submit" class="btn">Update</button>
+                                </div>
                             </form>
                         </td>
                     </tr>

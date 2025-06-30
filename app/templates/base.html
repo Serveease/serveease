@@ -21,23 +21,36 @@
     </div>
 
     <nav class="navbar">
-        <a class="logo" href="{{ url_for('main.index') }}">ServeEase</a>
-        <div class="nav-links">
-            {% if current_user.is_authenticated %}
-                {% if current_user.role != 'admin' %}
-                    <a href="{{ url_for('main.dashboard') }}">Dashboard</a>
-                    <a href="{{ url_for('track.track_services') }}">Track My Services</a>
-                {% endif %}
-                {% if current_user.role == 'admin' %}
-                    <a href="{{ url_for('main.dashboard') }}">Dashboard</a>
-                    <a href="{{ url_for('admin.admin_home') }}">Admin</a>
-                {% endif %}
-                <a href="{{ url_for('auth.logout') }}">Logout</a>
-            {% else %}
-                <a href="{{ url_for('auth.login') }}">Login</a>
+<a class="animated-logo" href="{{ url_for('main.index') }}">
+  <div class="loader">
+    <p>ServeEase</p>
+    <div class="words">
+      <span class="word">Clearances</span>
+      <span class="word">Certificates</span>
+      <span class="word">Appointments</span>
+      <span class="word">Payments</span>
+      <span class="word">Support</span>
+    </div>
+  </div>
+</a>
+
+    <div class="nav-links">
+        {% if current_user.is_authenticated %}
+            {% if current_user.role != 'admin' %}
+                <a href="{{ url_for('main.dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('track.track_services') }}">Track My Services</a>
             {% endif %}
-        </div>
-    </nav>
+            {% if current_user.role == 'admin' %}
+                <a href="{{ url_for('main.dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('admin.admin_home') }}">Admin</a>
+            {% endif %}
+            <a href="{{ url_for('auth.logout') }}" class="nav-logout">Logout</a>
+        {% else %}
+            <a href="{{ url_for('auth.login') }}" class="nav-login">Login</a>
+        {% endif %}
+    </div>
+</nav>
+
 
     <main class="content">
         {% block content %}{% endblock %}

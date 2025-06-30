@@ -5,35 +5,33 @@
 {% block content %}
 <div class="page-container">
     <div class="form-container">
-        <h2>📝 Create Your Account</h2>
+        <h2> Create Your Account</h2>
         <form action="{{ url_for('auth.register') }}" method="POST" class="inputs">
 
             <input type="text" name="name" placeholder="Full Name" required>
             <input type="email" name="email" placeholder="Email Address" required>
             <input type="password" name="password" placeholder="Password" required>
 
-            <label for="barangay">🏘️ Barangay</label>
+            <label for="barangay">Barangay</label>
             <select name="barangay" required>
                 <option value="">Select Barangay</option>
                 <option value="Barangay 1">Barangay 1</option>
                 <option value="Barangay 2">Barangay 2</option>
                 <option value="Barangay 3">Barangay 3</option>
-                <!-- Add more as needed -->
             </select>
 
-            <label for="district">🏙️ District</label>
+            <label for="district">District</label>
             <select name="district" required>
                 <option value="">Select District</option>
                 <option value="District 1">District 1</option>
                 <option value="District 2">District 2</option>
                 <option value="District 3">District 3</option>
-                <!-- Add more as needed -->
             </select>
 
-            <label for="birthday">🎂 Birthday</label>
+            <label for="birthday">Birthday</label>
             <input type="date" name="birthday" required>
 
-            <label for="gender">👤 Gender</label>
+            <label for="gender">Gender</label>
             <select name="gender" required>
                 <option value="">Select Gender</option>
                 <option value="Male">Male</option>
@@ -41,10 +39,10 @@
                 <option value="Other">Other</option>
             </select>
 
-            <label for="phone">📱 Phone Number</label>
+            <label for="phone">Phone Number</label>
             <input type="tel" name="phone" placeholder="e.g. 09123456789" required pattern="^(09|\+639)\d{9}$">
 
-            <label for="civil_status">📄 Civil Status</label>
+            <label for="civil_status">Civil Status</label>
             <select name="civil_status" required>
                 <option value="">Select Civil Status</option>
                 <option value="Single">Single</option>
@@ -53,14 +51,44 @@
                 <option value="Separated">Separated</option>
             </select>
 
-            <button type="submit">✅ Register</button>
+            <button type="submit">Register</button>
         </form>
 
         <p>Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a></p>
     </div>
 
-    <div class="right-background">
-        <img src="{{ url_for('static', filename='RESOURCES/citypic.jpg') }}" alt="City View">
+<div class="right-background">
+    <div class="slider">
+        <div class="list">
+            <div class="item" style="--position: 1">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img1.jpg') }}" alt="Slide 1">
+            </div>
+            <div class="item" style="--position: 2">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img2.jpg') }}" alt="Slide 2">
+            </div>
+            <div class="item" style="--position: 3">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img3.jpg') }}" alt="Slide 3">
+            </div>
+            <div class="item" style="--position: 4">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img4.WEBP') }}" alt="Slide 4">
+            </div>
+            <div class="item" style="--position: 5">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img5.WEBP') }}" alt="Slide 5">
+            </div>
+            <div class="item" style="--position: 6">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img6.png') }}" alt="Slide 6">
+            </div>
+            <div class="item" style="--position: 7">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img7.png') }}" alt="Slide 7">
+            </div>
+            <div class="item" style="--position: 8">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img8.jpg') }}" alt="Slide 8">
+            </div>
+            <div class="item" style="--position: 9">
+                <img src="{{ url_for('static', filename='RESOURCES/carousel/img9.jpg') }}" alt="Slide 9">
+            </div>
+        </div>
     </div>
+</div>
 </div>
 {% endblock %}

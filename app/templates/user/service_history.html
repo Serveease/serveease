@@ -1,59 +1,118 @@
-    {% extends 'base.html' %}
+{% extends 'base.html' %}
 {% block content %}
 <div class="admin-wrapper">
-    <div class="admin-header"><h2>📋 Service History</h2></div>
-    <div class="admin-content">
-        <h3>📑 Document Requests</h3>
+  <div class="admin-header"><h2>Service History</h2></div>
+  <div class="admin-content">
+
+    <!-- Document Requests -->
+    <section class="history-section">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>Document Requests</h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-content">
         <table>
+          <thead>
             <tr><th>Tracking ID</th><th>Document</th><th>Date</th></tr>
+          </thead>
+          <tbody>
             {% for d in doc_requests %}
             <tr>
-                <td>{{ d.tracking_number }}</td>
-                <td>{{ d.document_type }}</td>
-                <td>{{ d.created_at.strftime('%Y-%m-%d') }}</td>
+              <td>{{ d.tracking_number }}</td>
+              <td>{{ d.document_type }}</td>
+              <td>{{ d.created_at.strftime('%Y-%m-%d') }}</td>
             </tr>
             {% endfor %}
+          </tbody>
         </table>
+      </div>
+    </section>
 
-        <h3>📅 Appointments</h3>
+    <!-- Appointments -->
+    <section class="history-section">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>Appointments</h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-content">
         <table>
+          <thead>
             <tr><th>Tracking ID</th><th>Purpose</th><th>Date</th></tr>
+          </thead>
+          <tbody>
             {% for a in appointments %}
-                {% if a.created_at %}
-                    <tr>
-                        <td>{{ a.tracking_number }}</td>
-                        <td>{{ a.purpose }}</td>
-                        <td>{{ a.created_at.strftime('%Y-%m-%d') if a.created_at else 'N/A' }}</td>
-                    </tr>
-                {% endif %}
+              {% if a.created_at %}
+              <tr>
+                <td>{{ a.tracking_number }}</td>
+                <td>{{ a.purpose }}</td>
+                <td>{{ a.created_at.strftime('%Y-%m-%d') }}</td>
+              </tr>
+              {% endif %}
             {% endfor %}
+          </tbody>
         </table>
+      </div>
+    </section>
 
-         <h3>💳 Payments</h3>
+    <!-- Payments -->
+    <section class="history-section">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>Payments</h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-content">
         <table>
+          <thead>
             <tr><th>Tracking Number</th><th>Amount</th><th>Method</th><th>Date</th></tr>
+          </thead>
+          <tbody>
             {% for pay in payments %}
             <tr>
-                <td>{{ pay.tracking_number }}</td>
-                <td>{{ pay.amount }}</td>
-                <td>{{ pay.method }}</td>
-                <td>{{ pay.date.strftime('%Y-%m-%d') if pay.date else 'N/A' }}</td>
+              <td>{{ pay.tracking_number }}</td>
+              <td>{{ pay.amount }}</td>
+              <td>{{ pay.method }}</td>
+              <td>{{ pay.date.strftime('%Y-%m-%d') if pay.date else 'N/A' }}</td>
             </tr>
             {% endfor %}
+          </tbody>
         </table>
+      </div>
+    </section>
 
-        <h3>💬 Feedback</h3>
+    <!-- Feedback -->
+    <section class="history-section">
+      <div class="section-header" onclick="toggleSection(this)">
+        <h3>Feedback</h3>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="section-content">
         <table>
+          <thead>
             <tr><th>Tracking Number</th><th>Category</th><th>Message</th><th>Date</th></tr>
+          </thead>
+          <tbody>
             {% for fb in feedbacks %}
             <tr>
-                <td>{{ fb.tracking_number }}</td>
-                <td>{{ fb.category }}</td>
-                <td>{{ fb.message }}</td>
-                <td>{{ fb.date_created.strftime('%Y-%m-%d') if fb.date_created else 'N/A' }}</td>
+              <td>{{ fb.tracking_number }}</td>
+              <td>{{ fb.category }}</td>
+              <td>{{ fb.message }}</td>
+              <td>{{ fb.date_created.strftime('%Y-%m-%d') if fb.date_created else 'N/A' }}</td>
             </tr>
             {% endfor %}
+          </tbody>
         </table>
-    </div>
+      </div>
+    </section>
+
+  </div>
 </div>
+
+<script>
+function toggleSection(header) {
+  const section = header.nextElementSibling;
+  const icon = header.querySelector('.toggle-icon');
+  section.classList.toggle('open');
+  icon.textContent = section.classList.contains('open') ? '▲' : '▼';
+}
+</script>
 {% endblock %}

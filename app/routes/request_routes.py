@@ -65,4 +65,4 @@ def request_document():
 @login_required
 def track_requests():
     requests_list = DocumentRequest.query.filter_by(user_id=current_user.id).all()
-    return render_template('track_requests.html', requests=requests_list)
+    return render_template('track_results/unified_result.html', requests=requests_list)
